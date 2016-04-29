@@ -24,16 +24,16 @@ FROM node:6-onbuild
 ```
 
 ```bash
-//building & run docker image
-//with environment variables to overwrite config data
+# building & run docker image
+# with environment variables to overwrite config data
 
 docker build -t my-config-test .
 docker run -e NODE_CONFIG_PORT=5555 -e NODE_CONFIG_NESTED_SOMETHING=yes my-config-test
 
-//outputs:
+# outputs:
 
-//555 instead of 1234
-//"yes" instead of "no"
+# 555 instead of 1234
+# "yes" instead of "no"
 ```
 
 - author: Christian Fröhlingsdorf, <chris@5cf.de>
