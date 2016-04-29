@@ -1,0 +1,29 @@
+{
+  "name": "dockerconfig",
+  "version": "1.0.0",
+  "description": "easy nodejs config for docker (overwrite with ENV vars)",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/krystianity/dockerconfig.git"
+  },
+  "keywords": [
+    "docker",
+    "config",
+    "config for docker",
+    "environment variables",
+    "overwrite",
+    "dockerconfig"
+  ],
+  "author": "Christian Fröhlingsdorf <chris@5cf.de>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/krystianity/dockerconfig"
+  },
+  "homepage": "https://github.com/krystianity/dockerconfig",
+  "dependencies": {
+    "bash-color": "~0.0.3"
+  },
+  "devDependencies": {}
+}
