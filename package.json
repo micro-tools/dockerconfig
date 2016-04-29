@@ -1,6 +1,6 @@
 {
   "name": "dockerconfig",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "easy nodejs config for docker (overwrite with ENV vars)",
   "main": "index.js",
   "scripts": {},

@@ -2,7 +2,6 @@
 - easy nodejs config for docker (overwrite with ENV vars)
 
 ```javascript
-
 //somewhere in your init script/class
 
 const dockerconfig = require("dockerconfig");
@@ -11,7 +10,6 @@ const dockerconfig = require("dockerconfig");
 const myConfigData = require("./config.json");
 const config = dockerconfig.getConfig(myConfigData);
 config.makeGlobal();
-
 
 //somewhere else
 
