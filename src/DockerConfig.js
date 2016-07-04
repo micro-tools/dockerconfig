@@ -36,7 +36,8 @@ DockerConfig.prototype._overwriteWithEnvironmentVars = function(){
                     continue;
                 }
 
-                env = enva[1].toLowerCase(); // turns "NODE_CONF_PORT" into "port"
+                env = enva[1].toLowerCase(); // turns "NODE_CONF_DATABASE_CONSTRING" into "database_constring"
+                env = env.replace("_", ".");
 
                 if(!env || !this._getRef(this, env)){
                     this._println("[" + SOURCE_ENVS + "] -> variable key " + env + " does not exist in the config file, it will be skipped.");

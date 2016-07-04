@@ -1,5 +1,7 @@
 # dockerconfig
 - easy nodejs config for docker (overwrite with ENV vars)
+- updated: you must not use "_" in your variable names
+- check ./test if you dont understand the readme example (you can run "npm test" to try it)
 
 ```javascript
 //somewhere in your init script/class
