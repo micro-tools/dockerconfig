@@ -1,10 +1,10 @@
 {
   "name": "dockerconfig",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "easy nodejs config for docker (overwrite with ENV vars)",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_CONFIG_DATABASE_CONSTRING=myfancyurl node ./test/int.test.js"
+    "test": "NODE_CONFIG_DATABASE_POSTGRES_CONSTRING='[{ \"host\": \"123\", \"port\": 123 }]' node ./test/int.test.js"
   },
   "repository": {
     "type": "git",

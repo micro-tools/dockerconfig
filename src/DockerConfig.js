@@ -37,15 +37,25 @@ DockerConfig.prototype._overwriteWithEnvironmentVars = function(){
                 }
 
                 env = enva[1].toLowerCase(); // turns "NODE_CONF_DATABASE_CONSTRING" into "database_constring"
-                env = env.replace("_", ".");
+                env = env.replace(/_/g, '.');
 
                 if(!env || !this._getRef(this, env)){
                     this._println("[" + SOURCE_ENVS + "] -> variable key " + env + " does not exist in the config file, it will be skipped.");
                     continue;
                 }
 
-                this._println(this._getArgsOutput(SOURCE_ENVS, env, this._getRef(this, env), process.env[envs[i]]));
-                this._setRef(this, env, process.env[envs[i]]);
+                var valuePure = process.env[envs[i]];
+                var value = valuePure;
+                if(typeof valuePure === "string"){
+                    try {
+                        value = JSON.parse(valuePure);
+                    } catch(ex){
+                        //silent
+                    }
+                }
+
+                this._println(this._getArgsOutput(SOURCE_ENVS, env, this._getRef(this, env), value));
+                this._setRef(this, env, value);
             }
         }
     }
