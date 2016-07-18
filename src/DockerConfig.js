@@ -100,9 +100,9 @@ DockerConfig.prototype._setRef = function(obj, prop, value){
 DockerConfig.prototype._getArgsOutput = function(source, name, oldContent, newContent){
 
     oldContent = typeof oldContent === "object" ? JSON.stringify(oldContent) : oldContent;
-    newContent = typeof  newContent === "object" ? JSON.stringify(newContent) : newContent;
+    //newContent = typeof  newContent === "object" ? JSON.stringify(newContent) : newContent;
 
-    return "|" + source + "| -> variable [" + name + "] set, overwriting [" + oldContent + "] with [" + newContent + "]";
+    return "|" + source + "| -> variable [" + name + "] set, overwriting [" + oldContent + "] with [new content..(secret)]";
 };
 
 DockerConfig.prototype._println = function(str){
