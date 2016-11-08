@@ -3,5 +3,6 @@
     "postgres": {
       "constring": "youshouldnotseethis"
     }
-  }
+  },
+  "enableFeatureX": "youshouldnotseethis"
 }
