@@ -70,8 +70,11 @@ DockerConfig.prototype._getRef = function(o, s){
 
     for (var i = 0, n = a.length; i < n; ++i) {
         var k = a[i];
-        if (k in o) {
-            o = o[k];
+
+        const ciO = Object.keys(o).map(k => [k, k.toLowerCase(), o[k]]);
+        let prop = ciO.find(([key, lcK, prop]) => lcK === k);
+        if(prop) {
+            o = prop[2];
         } else {
             return;
         }
@@ -94,7 +97,10 @@ DockerConfig.prototype._setRef = function(obj, prop, value){
             prop,
             value);
     } else {
-        obj[prop[0]] = value;
+        const key = Object.keys(obj).map(key => [key, key.toLowerCase()]).find(([key, lcKey]) => lcKey === prop[0]);
+        if(key) {
+            obj[key[0]] = value;
+        }
     }
 };
 
