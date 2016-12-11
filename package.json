@@ -1,6 +1,6 @@
 {
   "name": "dockerconfig",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "easy nodejs config for docker (overwrite with ENV vars)",
   "main": "index.js",
   "scripts": {
@@ -28,6 +28,6 @@
     "bash-color": "~0.0.3"
   },
   "devDependencies": {
-    "mocha": "^3.1.2"
+    "mocha": "3.2.x"
   }
 }

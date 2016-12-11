@@ -4,6 +4,44 @@ const SOURCE_ENVS = "ENVS";
 const SOURCE_ARGS = "ARGS";
 const ENV_PREFIX = "NODE_CONFIG_";
 
+/**
+ * simple config version validation:
+ *
+ * - returns nothing if no versions given or versions match
+ * - throws an error on version mismatch
+ *
+ * @param config {Object}
+ * @param envConfigVersion {number}
+ */
+function validateConfigVersion(config, envConfigVersion) {
+    // any version set? if not: no config versioning required, everything is fine
+    if(!config.hasOwnProperty("configVersion") && !envConfigVersion) {
+        return;
+    }
+
+    if(!config.configVersion) {
+        throw new Error("config has no version, but NODE_CONFIG_CONFIGVERSION given: please update your image.")
+    }
+
+    if(!envConfigVersion) {
+        throw new Error("no NODE_CONFIG_CONFIGVERSION given, but configVersion set in configuration: please update your deployment.")
+    }
+
+    // (simple) comparisons via "<" ">" fail for strings, e.g.: "11" < "3"…
+    // so lets restrict usage to numbers only
+    if(typeof config.configVersion !== "number") {
+        throw new Error("configVersion must be a number. Using timestamps as configVersion is strongly suggested.");
+    }
+
+    if(config.configVersion < envConfigVersion) {
+        throw new Error("NODE_CONFIG_CONFIGVERSION newer than configVersion: please update your image.")
+    }
+
+    if(envConfigVersion < config.configVersion) {
+        throw new Error("NODE_CONFIG_CONFIGVERSION outdated: please update your deployment.");
+    }
+}
+
 //initialize with a config object e.g. const dc = Object.create(DockerConfig, config({}));
 function DockerConfig(){}
 
@@ -127,6 +165,7 @@ DockerConfig.prototype.makeGlobal = function(){
 
 //static
 DockerConfig.getConfig = function(obj){
+    validateConfigVersion(obj, process.env["NODE_CONFIG_CONFIGVERSION"]);
     const config = Object.assign(new DockerConfig(), obj);
     config.init();
     return config;
